@@ -1,6 +1,6 @@
 # dbmigrate.js
 
-DB migrations from nodejs
+DB migrations utility from nodejs
 
 For now only SQLite support
 
