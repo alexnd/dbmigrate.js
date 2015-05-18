@@ -1,6 +1,6 @@
 /*
  * dbmigrate.js
- * db migrations from nodejs (now only SQLITE support)
+ * db migrations utility from nodejs (now only SQLITE support)
  * @author: Alexaner Melanchenko <info@alexnd.com>
  *
  * SQLITE QUERIES:
@@ -26,19 +26,20 @@
 
 "use strict";
 
-module.paths.push('/usr/local/lib/node_modules');
-module.paths.push('/usr/local/share/npm/lib/node_modules');
-module.paths.push('/usr/lib/node_modules');
-module.paths.push('/Users/root/AppData/Roaming/npm/node_modules');
+//quickfix the node env
+//module.paths.push('/usr/local/lib/node_modules');
+//module.paths.push('/usr/local/share/npm/lib/node_modules');
+//module.paths.push('/usr/lib/node_modules');
+//module.paths.push('/Users/root/AppData/Roaming/npm/node_modules');
 
 var cfg = {'db_filename' : './test.db'};
+//var cfg = require('./cfg');
 var migrations = {
 	'users' : false,
 	'users_mod' : true,
 	'foo' : false,
 };
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(cfg.db_filename);
+
 var m = {};
 
 // targets go here...
@@ -77,6 +78,11 @@ m.foo = [
 	q3: {before:'users_mod'}
 ];
 
+// implementation
+
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database(cfg.db_filename);
+
 /*
  * migration_run()
  * migration_run('t1')
@@ -111,9 +117,6 @@ function run_q(v, p) {
 		for(var i=0; i<v.length; i++) {
 			if ('string' == typeof v[i]) db.run(v[i]);
 			else if (Object.prototype.toString.call(v[i]) === '[object Array]') {
-				//for (var j=0; j<v[i].length; j++)
-				//	if ('string' === typeof v[i][j]) db.run(v[i][j]);
-				//	else migration(v[i][j]);
 				run_q(v[i][j]);
 			} else if (v[i] !== null && 'object' == typeof v[i]) migration(v[i]);
 		}
@@ -137,3 +140,5 @@ try {
 	else console.log(_);
 	if (undefined!==_.stack) console.log(_.stack);
 }
+
+//TODO: exports to module
