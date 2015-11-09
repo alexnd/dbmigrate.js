@@ -59,8 +59,8 @@ m.users = [
 
 m.users_mod = '';
 
-m.foo = [
-  //q0
+m.foo = {
+  	//q0
 	before:{q:[
 		"ALTER TABLE chat_messages RENAME TO chat_messages2"
 	]},
@@ -76,7 +76,7 @@ m.foo = [
 		"DROP TABLE chat_messages2"
 	]},
 	q3: {before:'users_mod'}
-];
+};
 
 // implementation
 
