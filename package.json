@@ -1,0 +1,25 @@
+{
+  "name": "dbmigrate.js",
+  "version": "1.0.0",
+  "description": "DB migrations utility for nodejs",
+  "main": "dbmigrate.js",
+  "scripts": {
+    "test": "node ./test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexnd/dbmigrate.js.git"
+  },
+  "keywords": [
+    "database",
+    "migration",
+    "mysql",
+    "sqlite"
+  ],
+  "author": "Alexander Melanchenko @alexnd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexnd/dbmigrate.js/issues"
+  },
+  "homepage": "https://github.com/alexnd/dbmigrate.js#readme"
+}
